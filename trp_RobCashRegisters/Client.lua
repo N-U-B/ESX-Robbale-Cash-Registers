@@ -22,36 +22,22 @@ Citizen.CreateThread(function()
 PlayerData = ESX.GetPlayerData()
 end
 end)
-
-Citizen.CreateThread(function() --cash register steal function 
-    local sleep = 500
-    while true do
-       Citizen.Wait(sleep)
-       for k,v in ipairs(Config.Marker)do   
-       local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-          local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, v.x, v.y, v.z)
-          if IsControlPressed(0, Keys['LEFTALT']) then
-            if dist <= 3 then
-            sleep = 0 
-                  if dist <= 2 then
-                  Draw3DText(v.x, v.y, v.z-0.7, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
-                if IsControlJustPressed(0, Keys['E']) then 
-                    IsRobbingRegister = false
-                    TriggerServerEvent('RobRegister')
-                TriggerEvent('RobberyAnimation')
-                Citizen.Wait(15000)
-                IsRobbingRegister = false
-                Citizen.Wait(500000)
-            --  end
-            end
-      end
-    end
-  end 
-  end
+function Draw3DText(x, y, z, text, scale)
+  local onScreen, _x, _y = World3dToScreen2d(x, y, z)
+  local pX, pY, pZ = table.unpack(GetGameplayCamCoord())
+  SetTextScale(scale, scale)
+  SetTextFont(4)
+  SetTextProportional(1)
+  SetTextEntry("STRING")
+  SetTextCentre(true)
+  SetTextColour(255, 255, 255, 215)
+  AddTextComponentString(text)
+  DrawText(_x, _y)
+  local factor = (string.len(text)) / 700
+  DrawRect(_x, _y + 0.0150, 0.10 + factor, 0.03, 41, 11, 41, 100)
 end
-end)
 
-RegisterNetEvent('RobberyAnimation') -- the animation it does
+RegisterNetEvent('RobberyAnimation')
   AddEventHandler('RobberyAnimation', function()
       IsRobbingRegister = false 
       IsRobbingRegister = true
@@ -79,17 +65,31 @@ RegisterNetEvent('RobberyAnimation') -- the animation it does
        Citizen.Wait(5)
       end
      end
-function Draw3DText(x, y, z, text, scale) -- the draw3DText Function
-  local onScreen, _x, _y = World3dToScreen2d(x, y, z)
-  local pX, pY, pZ = table.unpack(GetGameplayCamCoord())
-  SetTextScale(scale, scale)
-  SetTextFont(4)
-  SetTextProportional(1)
-  SetTextEntry("STRING")
-  SetTextCentre(true)
-  SetTextColour(255, 255, 255, 215)
-  AddTextComponentString(text)
-  DrawText(_x, _y)
-  local factor = (string.len(text)) / 700
-  DrawRect(_x, _y + 0.0150, 0.10 + factor, 0.03, 41, 11, 41, 100)
+Citizen.CreateThread(function() --cash register steal function 
+    local sleep = 500
+    while true do
+       Citizen.Wait(sleep)
+       for k,v in ipairs(Config.Marker)do   
+       local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
+          local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, v.x, v.y, v.z)
+          if IsControlPressed(0, Keys['LEFTALT']) then
+           -- for k,v in ipairs(Config.DrawDistance)do
+            if dist <= 3 then
+            sleep = 0 
+                  if dist <= 2 then
+                  Draw3DText(v.x, v.y, v.z-0.7, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
+                if IsControlJustPressed(0, Keys['E']) then 
+                    IsRobbingRegister = false
+                    TriggerServerEvent('RobRegister')
+                TriggerEvent('RobberyAnimation')
+                Citizen.Wait(15000)
+                IsRobbingRegister = false
+                Citizen.Wait(500000)
+            --  end
+            end
+      end
+    end
+  end 
+  end
 end
+end)

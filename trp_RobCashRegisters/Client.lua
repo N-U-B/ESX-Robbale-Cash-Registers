@@ -69,13 +69,15 @@ Citizen.CreateThread(function() --cash register steal function
     local sleep = 500
     while true do
        Citizen.Wait(sleep)
-          local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-          local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, 280.9055, -972.6857, 30.67834)
+       for k,v in ipairs(Config.Marker)do   
+       local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
+          local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, v.x, v.y, v.z)
           if IsControlPressed(0, Keys['LEFTALT']) then
+           -- for k,v in ipairs(Config.DrawDistance)do
             if dist <= 3 then
-            sleep = 0
-              if dist <= 2 then 
-                Draw3DText(280.9055, -972.6857, 30.67834-0.6, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
+            sleep = 0 
+                  if dist <= 2 then
+                  Draw3DText(v.x, v.y, v.z-0.7, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
                 if IsControlJustPressed(0, Keys['E']) then 
                     IsRobbingRegister = false
                     TriggerServerEvent('RobRegister')
@@ -83,129 +85,11 @@ Citizen.CreateThread(function() --cash register steal function
                 Citizen.Wait(15000)
                 IsRobbingRegister = false
                 Citizen.Wait(500000)
-              end
+            --  end
             end
       end
     end
-    end
-end)
-Citizen.CreateThread(function() --cash register steal function 
-  local sleep = 500
-  while true do
-     Citizen.Wait(sleep)
-        local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-        local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, 25.05495, -1347.178, 30.81323)
-        if IsControlPressed(0, Keys['LEFTALT']) then
-          if dist <= 3 then
-          sleep = 0
-            if dist <= 2 then 
-              Draw3DText(25.05495, -1347.178, 30.81323-0.9, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
-              if IsControlJustPressed(0, Keys['E']) then 
-                  IsRobbingRegister = false
-                  TriggerServerEvent('RobRegister')
-              TriggerEvent('RobberyAnimation')
-              Citizen.Wait(15000)
-              IsRobbingRegister = false
-              Citizen.Wait(500000)
-            end
-          end
-    end
+  end 
   end
-  end
-end)
-Citizen.CreateThread(function() --cash register steal function 
-  local sleep = 500
-  while true do
-     Citizen.Wait(sleep)
-        local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-        local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, -706.7868, -913.6484, 20.45056)
-        if IsControlPressed(0, Keys['LEFTALT']) then
-          if dist <= 3 then
-          sleep = 0
-            if dist <= 2 then 
-              Draw3DText(-706.7868, -913.6484, 20.45056-0.9, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
-              if IsControlJustPressed(0, Keys['E']) then 
-                  IsRobbingRegister = false
-                  TriggerServerEvent('RobRegister')
-              TriggerEvent('RobberyAnimation')
-              Citizen.Wait(15000)
-              IsRobbingRegister = false
-              Citizen.Wait(500000)
-            end
-          end
-    end
-  end
-  end
-end)
-Citizen.CreateThread(function() --cash register steal function 
-  local sleep = 500
-  while true do
-     Citizen.Wait(sleep)
-        local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-        local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, 1134.778, -982.2198, 47.57874)
-        if IsControlPressed(0, Keys['LEFTALT']) then
-          if dist <= 3 then
-          sleep = 0
-            if dist <= 2 then 
-              Draw3DText(1134.778, -982.2198, 47.57874-0.9, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
-              if IsControlJustPressed(0, Keys['E']) then 
-                  IsRobbingRegister = false
-                  TriggerServerEvent('RobRegister')
-              TriggerEvent('RobberyAnimation')
-              Citizen.Wait(15000)
-              IsRobbingRegister = false
-              Citizen.Wait(500000)
-            end
-          end
-    end
-  end
-  end
-end)
-Citizen.CreateThread(function() --cash register steal function 
-  local sleep = 500
-  while true do
-     Citizen.Wait(sleep)
-        local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-        local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, 2557.345, 381.389, 109.9399)
-        if IsControlPressed(0, Keys['LEFTALT']) then
-          if dist <= 3 then
-          sleep = 0
-            if dist <= 2 then 
-              Draw3DText(2557.345, 381.389, 109.9399-0.9, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
-              if IsControlJustPressed(0, Keys['E']) then 
-                  IsRobbingRegister = false
-                  TriggerServerEvent('RobRegister')
-              TriggerEvent('RobberyAnimation')
-              Citizen.Wait(15000)
-              IsRobbingRegister = false
-              Citizen.Wait(500000)
-            end
-          end
-    end
-  end
-  end
-end)
-Citizen.CreateThread(function() --cash register steal function 
-  local sleep = 500
-  while true do
-     Citizen.Wait(sleep)
-        local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-        local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, 1959.956, 3739.991, 32.32971)
-        if IsControlPressed(0, Keys['LEFTALT']) then
-          if dist <= 3 then
-            sleep = 0
-            if dist <= 2 then 
-              Draw3DText(1959.956+0.7, 3739.991+0.4, 32.32971+0.4, "~y~Cash Register ~w~ Press ~g~E~w~ To ~r~ Rob Cash Register", 0.4)
-              if IsControlJustPressed(0, Keys['E']) then 
-                  IsRobbingRegister = false
-                  TriggerServerEvent('RobRegister')
-              TriggerEvent('RobberyAnimation')
-              Citizen.Wait(15000)
-              IsRobbingRegister = false
-              Citizen.Wait(500000)
-            end
-          end
-    end
-  end
-  end
+end
 end)

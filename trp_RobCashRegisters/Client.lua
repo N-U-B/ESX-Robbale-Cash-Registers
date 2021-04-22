@@ -31,7 +31,6 @@ Citizen.CreateThread(function() --cash register steal function
        local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
           local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, v.x, v.y, v.z)
           if IsControlPressed(0, Keys['LEFTALT']) then
-           -- for k,v in ipairs(Config.DrawDistance)do
             if dist <= 3 then
             sleep = 0 
                   if dist <= 2 then
@@ -43,7 +42,6 @@ Citizen.CreateThread(function() --cash register steal function
                 Citizen.Wait(15000)
                 IsRobbingRegister = false
                 Citizen.Wait(500000)
-            --  end
             end
       end
     end
@@ -51,7 +49,10 @@ Citizen.CreateThread(function() --cash register steal function
   end
 end
 end)
-function Draw3DText(x, y, z, text, scale)
+
+
+
+function Draw3DText(x, y, z, text, scale) -- draws 3DText function
   local onScreen, _x, _y = World3dToScreen2d(x, y, z)
   local pX, pY, pZ = table.unpack(GetGameplayCamCoord())
   SetTextScale(scale, scale)
@@ -66,7 +67,7 @@ function Draw3DText(x, y, z, text, scale)
   DrawRect(_x, _y + 0.0150, 0.10 + factor, 0.03, 41, 11, 41, 100)
 end
 
-RegisterNetEvent('RobberyAnimation')
+RegisterNetEvent('RobberyAnimation') -- The anmation function
   AddEventHandler('RobberyAnimation', function()
       IsRobbingRegister = false 
       IsRobbingRegister = true
